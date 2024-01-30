@@ -1,6 +1,6 @@
 import { message } from "antd";
-import React, { useEffect} from "react";
-import { GetCurrentUser } from "../apicalls/users";
+import React, { useEffect } from "react";
+import { GetCurrentUser } from "../ApiCall/users";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { SetUser } from "../redux/usersSlice";
@@ -14,8 +14,9 @@ function ProtectedRoute({ children }) {
   const getpresentUser = async () => {
     try {
       dispatch(ShowLoading());
-      const response = await GetCurrentUser();
-      dispatch(HideLoading());
+      const response =
+         await GetCurrentUser();
+        dispatch(HideLoading());
       if (response.success) {
         dispatch(SetUser(response.data));
       } else {
@@ -40,14 +41,16 @@ function ProtectedRoute({ children }) {
   }, []);
 
   return (
-    user && 
-    (
+    user && (
       <div className="layout p-1">
         <div className="header bg-primary flex justify-between p-2">
           <div>
-            <h1 className="text-2xl text-white cursor-pointer"
+            <h1
+              className="text-2xl text-white cursor-pointer"
               // onClick={() => navigate("/")}
-            >Book My Show</h1>
+            >
+              Book My Show
+            </h1>
           </div>
 
           <div className="bg-white p-1 flex gap-1">

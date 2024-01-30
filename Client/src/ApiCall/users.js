@@ -18,3 +18,14 @@ export const loginUser =  async (payload) => {
     return err;
   }
 };
+
+
+
+export const GetCurrentUser =  async () => {
+  try {
+    const response = await axiosinstance.get("http://localhost:7000/user/get-currntuser");
+    return response.data;
+  } catch (err) {
+    return err;
+  }
+};
