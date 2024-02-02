@@ -22,6 +22,49 @@ router.post("/add-movie", async (req, res) => {
 });
 
 
+router.get("/get-all-movies", async (req, res) => {
+  try {
+    const movie  = await Movie.find()
+
+    res.send({
+      success: true,
+      message: "Movie fetched successfully",
+      data:movie
+    });
+  } catch (err) {
+    res.send({
+      success: false,
+      message: "Movie went something wrong",
+    });
+
+    console.log(err, "error arun");
+  }
+});
+
+
+
+
+router.post("/delete-movie", async (req, res) => {
+  try {
+    
+   await Movie.findByIdAndDelete(req.body.movieId)
+
+    res.send({
+      success: true,
+      message: "Movie deleted successfully",
+    });
+  } 
+  catch (err) {
+    res.send({
+      success: false,
+      message: "Movie went something wrong",
+    });
+
+    console.log(err, "error arun");
+  }
+});
+
+
 
 
 
