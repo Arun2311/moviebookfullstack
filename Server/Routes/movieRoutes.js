@@ -21,15 +21,14 @@ router.post("/add-movie", async (req, res) => {
   }
 });
 
-
 router.get("/get-all-movies", async (req, res) => {
   try {
-    const movie  = await Movie.find()
+    const movie = await Movie.find();
 
     res.send({
       success: true,
       message: "Movie fetched successfully",
-      data:movie
+      data: movie,
     });
   } catch (err) {
     res.send({
@@ -41,20 +40,15 @@ router.get("/get-all-movies", async (req, res) => {
   }
 });
 
-
-
-
 router.post("/delete-movie", async (req, res) => {
   try {
-    
-   await Movie.findByIdAndDelete(req.body.movieId)
+    await Movie.findByIdAndDelete(req.body.movieId);
 
     res.send({
       success: true,
       message: "Movie deleted successfully",
     });
-  } 
-  catch (err) {
+  } catch (err) {
     res.send({
       success: false,
       message: "Movie went something wrong",
@@ -63,20 +57,5 @@ router.post("/delete-movie", async (req, res) => {
     console.log(err, "error arun");
   }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 module.exports = router;
