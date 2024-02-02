@@ -4,6 +4,7 @@ const User = require("../model/userModel");
 const bcrypt = require("bcryptjs");
 
 const jwt = require("jsonwebtoken");
+const authmiddleware = require("../middleware/authmiddleware");
 
 router.post("/register", async (req, res) => {
   try {
@@ -71,7 +72,7 @@ router.post("/login", async (req, res) => {
 });
 
 // get by id user in fe
-router.get("/get-currntuser", async (req, res) => {
+router.get("/get-currntuser",authmiddleware, async (req, res) => {
   try {
     const user = await User.findById(req.body.userid).select("-password");
     res.send({

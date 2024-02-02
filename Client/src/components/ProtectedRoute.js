@@ -47,7 +47,7 @@ function ProtectedRoute({ children }) {
           <div>
             <h1
               className="text-2xl text-white cursor-pointer"
-              // onClick={() => navigate("/")}
+              onClick={() => navigate("/")}
             >
               Book My Show
             </h1>
@@ -58,16 +58,15 @@ function ProtectedRoute({ children }) {
             <h1
               className="text-sm underline"
               onClick={() => {
-                if (user.isAdmin) {
+                if (user?.isAdmin) {
                   navigate("/admin");
                 } else {
                   navigate("/profile");
                 }
               }}
             >
-              {user.name}
+              {user.name} 
             </h1>
-
             <i
               className="ri-logout-box-r-line mt-1"
               onClick={() => {

@@ -57,17 +57,17 @@ function Home() {
   return (
     <div>
     <div>
-      <Input
+      {/* <Input
         style={{ width: "600px" }}
         type="text"
         className="search-input"
         placeholder="Search for movies"
         value={searchText}
         onChange={(e) => setSearchText(e.target.value)}
-      />
+      /> */}
 
  
-      <h1 className="text-md uppercase mb-2">Currently Showing Movies</h1>
+      {/* <h1 className="text-md uppercase mb-2">Currently Showing Movies</h1> */}
 
       <Row gutter={[20]} className="mt-2">
         {movies

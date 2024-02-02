@@ -13,9 +13,9 @@ const Login = () => {
 
       if (response) {
         message.success(response.message);
+        console.log(response);
         localStorage.setItem("token", response.data);
         navigate("/");
-        // window.location.href = "/";
       } else {
         message.error(response.message);
       }
