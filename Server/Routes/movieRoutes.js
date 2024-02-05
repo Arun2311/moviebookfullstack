@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const Movie = require("../model/movieModel");
+const authmiddleware = require("../middleware/authmiddleware");
 
-router.post("/add-movie", async (req, res) => {
+router.post("/add-movie", authmiddleware, async (req, res) => {
   try {
     const movie = await new Movie(req.body);
     await movie.save();
@@ -21,7 +22,7 @@ router.post("/add-movie", async (req, res) => {
   }
 });
 
-router.get("/get-all-movies", async (req, res) => {
+router.get("/get-all-movies",authmiddleware, async (req, res) => {
   try {
     const movie = await Movie.find();
 
@@ -40,7 +41,26 @@ router.get("/get-all-movies", async (req, res) => {
   }
 });
 
-router.post("/delete-movie", async (req, res) => {
+
+router.post("/edit-movie",authmiddleware, async (req, res) => {
+  try {
+    await Movie.findByIdAndUpdate(req.body.movieId,req.body);
+
+    res.send({
+      success: true,
+      message: "Movie updated successfully",
+    });
+  } catch (err) {
+    res.send({
+      success: false,
+      message: "Movie went something wrong",
+    });
+
+    console.log(err, "error arun");
+  }
+});
+
+router.post("/delete-movie",authmiddleware, async (req, res) => {
   try {
     await Movie.findByIdAndDelete(req.body.movieId);
 
