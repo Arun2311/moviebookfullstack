@@ -13,6 +13,20 @@ export const AddTheatre = async (payload) => {
     }
   };
 
+  
+export const GetAllTheatres = async () => {
+  try {
+    const response = await axiosinstance.get(
+      "http://localhost:7000/theatre/get-all-theatre",
+      
+    );
+    return response.data;
+  } catch (err) {
+    return err;
+  }
+};
+
+
 
   export const GetAllTheatresByOwner = async (payload) => {
     console.log(payload,"SAdjksadhjs");

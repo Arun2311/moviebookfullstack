@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-//  import { GetAllTheatres, UpdateTheatre } from "../../apicalls/theatres";
+ import { GetAllTheatres, } from "../../ApiCall/theatre";
 import { useDispatch, useSelector } from "react-redux";
 import { HideLoading, ShowLoading } from "../../redux/loadersSlice";
 import { message, Table } from "antd";
@@ -9,19 +9,19 @@ function TheatresList() {
   const dispatch = useDispatch();
 
   const getData = async () => {
-    // try {
-    //   dispatch(ShowLoading());
-    //   const response = await GetAllTheatres();
-    //   if (response.success) {
-    //     setTheatres(response.data);
-    //   } else {
-    //     message.error(response.message);
-    //   }
-    //   dispatch(HideLoading());
-    // } catch (error) {
-    //   dispatch(HideLoading());
-    //   message.error(error.message);
-    // }
+    try {
+      dispatch(ShowLoading());
+      const response = await GetAllTheatres();
+      if (response.success) {
+        setTheatres(response.data);
+      } else {
+        message.error(response.message);
+      }
+      dispatch(HideLoading());
+    } catch (error) {
+      dispatch(HideLoading());
+      message.error(error.message);
+    }
   };
 
   const handleStatusChange = async (theatre) => {

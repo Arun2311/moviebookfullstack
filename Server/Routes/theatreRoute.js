@@ -19,6 +19,26 @@ router.post("/add-theatre", async (req, res) => {
   }
 });
 
+
+router.get("/get-all-theatre", async (req, res) => {
+  try {
+    const theatre = await Theatre.find().populate("owner");
+
+    
+    console.log(theatre);
+    res.send({
+      success: true,
+      message: "theatre fetched successfully",
+      data: theatre,
+    });
+  } catch (err) {
+    res.send({
+      success: false,
+      message: "theatre went  wrong",
+    });
+  }
+});
+
 router.post("/get-all-theatre-by-owner", async (req, res) => {
   try {
     const theatre = await Theatre.find({ owner: req.body.owner });
