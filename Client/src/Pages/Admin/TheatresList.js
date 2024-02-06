@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
- import { GetAllTheatres, } from "../../ApiCall/theatre";
+ import { GetAllTheatres,UpdateTheatre } from "../../ApiCall/theatre";
 import { useDispatch, useSelector } from "react-redux";
 import { HideLoading, ShowLoading } from "../../redux/loadersSlice";
 import { message, Table } from "antd";
@@ -25,24 +25,24 @@ function TheatresList() {
   };
 
   const handleStatusChange = async (theatre) => {
-    // try {
-    //   dispatch(ShowLoading());
-    //   const response = await UpdateTheatre({
-    //     theatreId: theatre._id,
-    //     ...theatre,
-    //     isActive: !theatre.isActive,
-    //   });
-    //   if (response.success) {
-    //     message.success(response.message);
-    //     getData();
-    //   } else {
-    //     message.error(response.message);
-    //   }
-    //   dispatch(HideLoading());
-    // } catch (error) {
-    //   dispatch(HideLoading());
-    //   message.error(error.message);
-    // }
+    try {
+      dispatch(ShowLoading());
+      const response = await UpdateTheatre({
+        theatreId: theatre._id,
+        ...theatre,
+        isActive: !theatre.isActive,
+      });
+      if (response.success) {
+        message.success(response.message);
+        getData();
+      } else {
+        message.error(response.message);
+      }
+      dispatch(HideLoading());
+    } catch (error) {
+      dispatch(HideLoading());
+      message.error(error.message);
+    }
   };
 
   const columns = [
