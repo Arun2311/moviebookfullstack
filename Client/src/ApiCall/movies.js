@@ -50,3 +50,13 @@ export const DeleteMovie = async (id) => {
 };
 
 
+// get a movie by id
+export const GetMovieById = async (id) => {
+  try {
+      const response = await axiosinstance.get(`http://localhost:7000/movie/get-movie-by-id/${id}`)
+
+      return response.data;
+  } catch (error) {
+      return error.response;
+  }
+}

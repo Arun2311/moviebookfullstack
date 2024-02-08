@@ -12,6 +12,7 @@ import "./stylesheets/theme.css";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./Pages/Profile/index";
 import Admin from "./Pages/Admin/index";
+import TheatresForMovie from "./Pages/TheatresForMovie";
 
 // function App() {
 
@@ -61,7 +62,7 @@ function App() {
               </ProtectedRoute>
             }
           />
-          {/* <Route
+          <Route
             path="/movie/:id"
             element={
               <ProtectedRoute>
@@ -69,7 +70,9 @@ function App() {
               </ProtectedRoute>
             }
           />
-           <Route
+
+          
+           {/* <Route
             path="/book-show/:id"
             element={
               <ProtectedRoute>

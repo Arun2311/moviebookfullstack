@@ -22,7 +22,7 @@ router.post("/add-movie", authmiddleware, async (req, res) => {
   }
 });
 
-router.get("/get-all-movies",authmiddleware, async (req, res) => {
+router.get("/get-all-movies", authmiddleware, async (req, res) => {
   try {
     const movie = await Movie.find();
 
@@ -41,10 +41,9 @@ router.get("/get-all-movies",authmiddleware, async (req, res) => {
   }
 });
 
-
-router.post("/edit-movie",authmiddleware, async (req, res) => {
+router.post("/edit-movie", authmiddleware, async (req, res) => {
   try {
-    await Movie.findByIdAndUpdate(req.body.movieId,req.body);
+    await Movie.findByIdAndUpdate(req.body.movieId, req.body);
 
     res.send({
       success: true,
@@ -60,7 +59,7 @@ router.post("/edit-movie",authmiddleware, async (req, res) => {
   }
 });
 
-router.post("/delete-movie",authmiddleware, async (req, res) => {
+router.post("/delete-movie", authmiddleware, async (req, res) => {
   try {
     await Movie.findByIdAndDelete(req.body.movieId);
 
@@ -75,6 +74,24 @@ router.post("/delete-movie",authmiddleware, async (req, res) => {
     });
 
     console.log(err, "error arun");
+  }
+});
+
+router.get("/get-movie-by-id/:id", async (req, res) => {
+  try {
+    const movie = await Movie.findById(req.params.id);
+
+    res.send({
+      success: true,
+      message: "Movie deleted successfully",
+      data: movie,
+    });
+  } catch (err) {
+    res.send({
+      success: false,
+      message: "Movie went something wrong",
+    });
+    console.log(err);
   }
 });
 
