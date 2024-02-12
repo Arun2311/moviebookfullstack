@@ -5,7 +5,7 @@ import { HideLoading, ShowLoading } from "../../redux/loadersSlice";
 import { GetAllMovies, GetMovieById } from "../../ApiCall/movies";
 import { useNavigate, useParams } from "react-router-dom";
 import moment from "moment";
-// import { GetAllTheatresByMovie } from "../../apicalls/theatres";
+import { GetAllTheatresByMovie } from "../../ApiCall/theatre";
 
 function TheatresForMovie() {
   // get date from query string
@@ -41,21 +41,22 @@ console.log(params,"sahjas");
     }
   };
 
-//   const getTheatres = async () => {
-//     try {
-//       dispatch(ShowLoading());
-//       const response = await GetAllTheatresByMovie({ date, movie: params.id });
-//       if (response.success) {
-//         setTheatres(response.data);
-//       } else {
-//         message.error(response.message);
-//       }
-//       dispatch(HideLoading());
-//     } catch (error) {
-//       dispatch(HideLoading());
-//       message.error(error.message);
-//     }
-//   };
+  const getTheatres = async () => {
+    try {
+      dispatch(ShowLoading());
+      const response = await GetAllTheatresByMovie({ date, movie: params.id });
+      if (response.success) {
+        setTheatres(response.data);
+        console.log(response.data,"dhgdyashghas");
+      } else {
+        message.error(response.message);
+      }
+      dispatch(HideLoading());
+    } catch (error) {
+      dispatch(HideLoading());
+      message.error(error.message);
+    }
+  };
 
   const handleMouseEnter = (id) => {
     setIsHovering(true);
@@ -69,9 +70,9 @@ console.log(params,"sahjas");
     getData();
   }, []);
 
-//   useEffect(() => {
-//     getTheatres();
-//   }, [date]);
+  useEffect(() => {
+    getTheatres();
+  }, [date]);
   return (
     movie && (
       <div>
@@ -93,7 +94,7 @@ console.log(params,"sahjas");
             <h1 className="text-md ">Select Date</h1>
             <input
               type="date"
-              min={moment().format("YYYY-MM-DD")}
+              // min={moment().format("YYYY-MM-DD")}
               value={date}
               onChange={(e) => {
                 setDate(e.target.value);
@@ -107,7 +108,7 @@ console.log(params,"sahjas");
         <hr />
 
         {/* movie theatres */}
-        {/* <div className="mt-1">
+        <div className="mt-1">
           <h1 className="text-xl uppercase">Theatres</h1>
         </div>
 
@@ -121,7 +122,7 @@ console.log(params,"sahjas");
 
               <div className="flex gap-2">
                 {theatre.shows
-                  .sort(
+                  ?.sort(
                     (a, b) => moment(a.time, "HH:mm") - moment(b.time, "HH:mm")
                   )
                   .map((show) => (
@@ -144,7 +145,7 @@ console.log(params,"sahjas");
               </div>
             </div>
           ))}
-        </div> */}
+        </div>
       </div>
     )
   );

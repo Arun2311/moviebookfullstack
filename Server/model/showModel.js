@@ -36,7 +36,7 @@ const showSchema = mongoose.Schema({
   theatre: {
     required: true,
     type: mongoose.Schema.Types.ObjectId,
-    ref: "theatres",
+    ref: "theatre",
   },
 });
 

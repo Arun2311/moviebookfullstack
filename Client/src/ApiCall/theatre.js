@@ -80,3 +80,20 @@ export const GetAllShowsByTheatre = async (payload) => {
       return err;
     }
   };
+
+
+  export const GetAllTheatresByMovie =  async(payload) =>{
+    try{
+
+      const response = await axiosinstance.post(
+        "http://localhost:7000/theatre/get-all-theatre-by-movie",
+        payload
+      );
+      return response.data;
+
+    }catch(err){
+      return err;
+ 
+    }
+
+  }

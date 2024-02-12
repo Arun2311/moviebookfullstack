@@ -13,6 +13,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./Pages/Profile/index";
 import Admin from "./Pages/Admin/index";
 import TheatresForMovie from "./Pages/TheatresForMovie";
+import BookShow  from "./Pages/BookShow";
 
 // function App() {
 
@@ -72,14 +73,14 @@ function App() {
           />
 
           
-           {/* <Route
+           <Route
             path="/book-show/:id"
             element={
-              <ProtectedRoute>
+              // <ProtectedRoute>
                 <BookShow />
-              </ProtectedRoute>
+              // </ProtectedRoute>
             }
-          /> */}
+          />
           <Route
             path="/profile"
             element={
