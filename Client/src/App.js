@@ -76,9 +76,9 @@ function App() {
            <Route
             path="/book-show/:id"
             element={
-              // <ProtectedRoute>
+              <ProtectedRoute>
                 <BookShow />
-              // </ProtectedRoute>
+               </ProtectedRoute>
             }
           />
           <Route

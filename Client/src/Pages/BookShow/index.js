@@ -37,18 +37,18 @@ function BookShow() {
 
   const getSeats = () => {
     const columns = 12;
-    const totalSeats = show.totalSeats; // 120
+    const totalSeats = 150; // 120
     const rows = Math.ceil(totalSeats / columns); // 10
 
     return (
         <div>
             <p className="m-4">Screen This Side</p>
             <hr/>
-      <div className="flex gap-1 flex-col p-2 card">
+      <div className="flex gap-1 flex-col p-2 ">
         <hr/>
         {Array.from(Array(rows).keys()).map((seat, index) => {
           return (
-            <div className="flex gap-1 justify-center">
+            <div className="flex gap-1 justify-center" key={index}>
               {Array.from(Array(columns).keys()).map((column, index) => {
                 const seatNumber = seat * columns + column + 1;
                 let seatClass = "seat";
@@ -57,9 +57,9 @@ function BookShow() {
                   seatClass = seatClass + " selected-seat";
                 }
 
-                if (show.bookedSeats.includes(seat * columns + column + 1)) {
-                  seatClass = seatClass + " booked-seat";
-                }
+                // if (show.bookedSeats.includes(seat * columns + column + 1)) {
+                //   seatClass = seatClass + " booked-seat";
+                // }
 
                 return (
                   seat * columns + column + 1 <= totalSeats && (
@@ -135,11 +135,11 @@ function BookShow() {
     getData();
   }, []);
   return (
-    show && (
+ 
       <div>
         {/* show infomation */}
 
-        <div className="flex justify-between card p-2 items-center">
+        {/* <div className="flex justify-between card p-2 items-center">
           <div>
             <h1 className="text-sm">{show.theatre.name}</h1>
             <h1 className="text-sm">{show.theatre.address}</h1>
@@ -157,11 +157,11 @@ function BookShow() {
               {moment(show.time, "HH:mm").format("hh:mm A")}
             </h1>
           </div>
-        </div>
+        </div> */}
 
         {/* seats */}
 
-        <div className="flex justify-center mt-2">{getSeats()}</div>
+        <div className="flex justify-center mt-2">{getSeats()}hjgfd</div>
 
         {/* {selectedSeats.length > 0 && (
           <div className="mt-2 flex justify-center gap-2 items-center flex-col">
@@ -185,7 +185,7 @@ function BookShow() {
           </div>
         )} */}
       </div>
-    )
+    
   );
 }
 
